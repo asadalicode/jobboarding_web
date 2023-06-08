@@ -81,3 +81,22 @@ export const jobSeekerRegisterAPICall = async (data: FormData) => {
   });
   return _response;
 };
+
+export const socialLoginAPICall = async (
+  url: string,
+  data: IAuth.ISocialLogin
+) => {
+  let _response: IAPIResponse = { success: false, message: '', data: {} };
+  await backendCall({
+    url,
+    method: 'POST',
+    data,
+  }).then((response: any) => {
+    _response = {
+      success: !response?.error,
+      message: response.message,
+      data: response.data,
+    };
+  });
+  return _response;
+};

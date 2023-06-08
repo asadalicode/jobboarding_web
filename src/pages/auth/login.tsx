@@ -14,7 +14,10 @@ import { useCallback, useEffect } from 'react';
 import {
   loginBusinessAPICall,
   loginCandidateAPICall,
+  socialLoginAPICall,
 } from '@src/shared/service/candidate/authService';
+import GoogleAuth from '@src/components/googleAuth';
+import FacebookAuth from '@src/components/facebookAuth';
 
 export interface initialSchemaValues {
   email: string;
@@ -43,6 +46,26 @@ function Login() {
 
   const register = (type: string) => {
     navigate(`/${type}`);
+  };
+
+  const handleAuthData = async (loginData: IAuth.ISocialLogin) => {
+    let _url = 'candidate/social_login';
+    if (pathname === '/businessLogin') {
+      _url = 'employer/social_login';
+    }
+    const _result = await socialLoginAPICall(_url, loginData);
+    let data: StorageI;
+    if (_result.success) {
+      if (pathname === '/businessLogin') {
+        data = { data: _result.data, userType: 'business' };
+        SetStorage(data, true);
+        navigate('/business/chooseMembership');
+      } else {
+        data = { data: _result.data, userType: 'jobSeeker' };
+        SetStorage(data, true);
+        navigate('/');
+      }
+    }
   };
 
   const handleSubmit = useCallback(async (values: initialSchemaValues) => {
@@ -180,22 +203,13 @@ function Login() {
                   <p className="text-sm font-light">Or Login with</p>
 
                   <div className="flex gap-4">
-                    <CustomButton
-                      icon={<Fb className="w-5 h-auto mr-2" />}
-                      label="Facebook"
-                      type="button"
-                      isLoading={false}
-                      variant="outlined"
-                      styleClass="btn-gray w-full !rounded-[5px] "
+                    <FacebookAuth
+                      className="flex-1"
+                      handleAuthData={handleAuthData}
                     />
-
-                    <CustomButton
-                      icon={<Googleblue className="w-5 h-auto mr-2" />}
-                      label="Google"
-                      type="button"
-                      isLoading={false}
-                      variant="outlined"
-                      styleClass="btn-gray w-full !rounded-[5px] "
+                    <GoogleAuth
+                      className="flex-1"
+                      handleAuthData={handleAuthData}
                     />
                   </div>
                 </div>

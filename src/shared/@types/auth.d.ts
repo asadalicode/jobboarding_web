@@ -15,4 +15,10 @@ declare namespace IAuth {
     state: string;
     postal_code: string;
   }
+
+  interface ISocialLogin {
+    email: string;
+    social_media_token: string;
+    social_media_platform: string;
+  }
 }
