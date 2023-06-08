@@ -21,7 +21,7 @@ function FacebookAuth({ handleAuthData, className }: IFacebookAuth) {
     }
   };
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full cursor-pointer ${className}`}>
       <FacebookLogin
         appId={facebookAppId}
         fields="name,email,picture"
@@ -34,7 +34,7 @@ function FacebookAuth({ handleAuthData, className }: IFacebookAuth) {
             onClick={renderProps.onClick}
           >
             <Fb className="w-5 h-auto mr-2" />
-            <p className="font-normal ">Google </p>
+            <p className="font-normal ">Facebook </p>
           </div>
         )}
       />

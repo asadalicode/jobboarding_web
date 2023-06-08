@@ -21,7 +21,7 @@ function GoogleAuth({ handleAuthData, className }: IGoogleAuth) {
   };
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full cursor-pointer ${className}`}>
       <GoogleLogin
         clientId={clientId}
         render={(renderProps) => (

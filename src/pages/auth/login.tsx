@@ -16,8 +16,8 @@ import {
   loginCandidateAPICall,
   socialLoginAPICall,
 } from '@src/shared/service/candidate/authService';
-import GoogleAuth from '@src/components/googleAuth';
 import FacebookAuth from '@src/components/facebookAuth';
+import GoogleAuth from '@src/components/googleAuth';
 
 export interface initialSchemaValues {
   email: string;
