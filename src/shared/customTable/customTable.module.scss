@@ -1,0 +1,21 @@
+.container {
+    @mixin statuslayout {
+        border-radius: 5px;
+        width: 80px;
+        height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .statusCompleted{
+        border: 1px solid green;
+        color: green;
+        @include statuslayout;
+    }
+    .statusPending{
+        border: 1px solid rgb(255, 143, 15);
+        color: rgb(255, 143, 15);
+        @include statuslayout;
+    }
+   
+}

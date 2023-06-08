@@ -1,0 +1,155 @@
+@import "./theme/mixing.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+  text-align: center;
+  height: 100%;
+
+  // margin-bottom: 50px;
+
+  hr.solid {
+    border: 0.5px solid #f4f4f4 !important;
+  }
+
+  .bg-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include for-phone-only {
+      // top: 37%;
+      width: 100%;
+    }
+  }
+
+  .nav_bg {
+    // background-position: center;
+    // transition: opacity 1s ease-in-out;
+    // -webkit-transition: opacity 1s ease-in-out;
+    -webkit-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+    background: linear-gradient(to right, #c6e3fc, #ffece7);
+    // -moz-transition: opacity 1s ease-in-out;
+    // -o-transition: opacity 1s ease-in-out;
+    // z-index: 1;
+    // height: 100%;
+    color: #000;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    @include for-tablet-portrait-up {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    @include for-phone-only {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    // grid-gap: 3.5vw;
+  }
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.swiper-slide {
+  height: auto !important;
+  text-align: center;
+}
+
+// .swiper-button-next {
+//   background-image: url(./assets/icons/arrow_left.svg);
+//   background-repeat: no-repeat;
+//   background-size: 100% auto;
+//   background-position: center;
+// }
+
+// .swiper-button-prev {
+//   background-image: url(./assets/icons/arrow_right.svg);
+//   background-repeat: no-repeat;
+//   // background-size: 100% auto;
+//   // background-position: center;
+//   background-size: contain;
+// }
+
+.swiper-button-next::after {
+  // display: none;
+  height: 60px;
+  width: 60px;
+  content: url(./assets/icons/arrow_left.svg) !important;
+  position: absolute;
+  right: -40px;
+  @include for-phone-only {
+    font-size: 10px !important;
+    height: 40px;
+    width: 40px;
+    right: -30px;
+  }
+  // -webkit-transform: translateZ(0);
+}
+
+.swiper-button-prev::after {
+  // display: none;
+  height: 60px;
+  width: 60px;
+  content: url(./assets/icons/arrow_right.svg) !important;
+  position: absolute;
+  left: -40px;
+  @include for-phone-only {
+    font-size: 10px !important;
+    height: 40px;
+    width: 40px;
+    left: -30px;
+  }
+  // -webkit-transform: translateZ(0);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.carousel-container {
+  position: relative;
+  .swiper {
+    position: revert !important;
+  }
+}
+
+#background-video {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  padding: none;
+  position: relative; /* optional depending on what you want to do in your app */
+}
+
+.bg-overlay {
+  background: transparent
+    linear-gradient(
+      180deg,
+      #0000001c 0%,
+      #00000047 37%,
+      #00000069 60%,
+      #0000005c 78%,
+      #000000d6 100%
+    )
+    0% 0% no-repeat padding-box;
+}
